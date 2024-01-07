@@ -16,20 +16,20 @@ from keras.callbacks import EarlyStopping
 #Analysis start (taken from Kaggle code):
 print(os.listdir("../input"))
 
-test_file = "../input/data.json"
-train_file = "../input/train.json"
+test_file = "../input/cleanupEng.json"
+train_file = "../input/final.json"
 
 x_train, y_train, x_test, test_inds = [], [], [], []
 
 with open(test_file) as json_file:  
-    data = json.load(json_file)
+    data = json.load(json_file, strict=False)
 
     for row in data:
         x_test.append(row['text'])
         test_inds.append(row['id'])
 
 with open(train_file) as json_file:  
-    data = json.load(json_file)
+    data = json.load(json_file, strict=False)
 
     for row in data:
         sentiment = -1
@@ -132,7 +132,7 @@ for i in range(test_num):
     y_pred[i] = vote_final
 
 predicted_classes = []
-filename = 'submission.csv'
+filename = 'cleanupEng.csv'
 
 for i, y_val in enumerate(y_pred):
     if y_val == 0:

@@ -19,6 +19,21 @@ def convert(filepath):
         jsonObject.append(textEntry)
     output.write(str(jsonObject))
 
+def convert2(filepath):
+    outputPath = filepath[:-3] + "json"
+    id = 0
+    output = open(outputPath, 'w')
+    output.write("[\n")
+    for text in getText(filepath):
+        output.write("{\n")
+        output.write("\t\"text\": " + '"' + text.strip() + '",\n')
+        output.write("\t\"id\": " + str(id) + "\n")
+        output.write("},\n")
+        id = id + 1
 
 
-convert("data.csv")
+    
+
+
+
+convert2("test2.csv")
